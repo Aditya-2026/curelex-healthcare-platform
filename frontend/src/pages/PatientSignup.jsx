@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { User, Mail, Phone, MapPin, Heart, Shield, Lock, FileText, Loader2 } from 'lucide-react';
+import { User, Mail, Phone, MapPin, Heart, Shield, Lock, FileText, Loader2, Eye, EyeOff } from 'lucide-react';
 import api from '../services/api';
 
 const PatientSignup = () => {
@@ -23,6 +23,8 @@ const PatientSignup = () => {
     const [profileImage, setProfileImage] = useState(null);
 
     const [otpSent, setOtpSent] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -262,7 +264,29 @@ const PatientSignup = () => {
                                     <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 sm:text-sm">
                                         <Lock size={16} />
                                     </span>
-                                    <input type="password" name="password" id="password" required value={formData.password} onChange={handleChange} className="flex-1 focus:ring-blue-500 focus:border-blue-500 block w-full min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300 py-2 border px-3" />
+                                    <div className="relative w-full flex-1 min-w-0 flex">
+                                        <input
+                                            type={showPassword ? "text" : "password"}
+                                            name="password"
+                                            id="password"
+                                            required
+                                            value={formData.password}
+                                            onChange={handleChange}
+                                            className="focus:ring-blue-500 focus:border-blue-500 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300 py-2 border pl-3 pr-10"
+                                        />
+                                        <button
+                                            type="button"
+                                            onClick={() => setShowPassword(!showPassword)}
+                                            className="absolute inset-y-0 right-0 flex items-center pr-3"
+                                            aria-label="Toggle password visibility"
+                                        >
+                                            {showPassword ? (
+                                                <EyeOff className="h-5 w-5 text-gray-500 hover:text-gray-700" />
+                                            ) : (
+                                                <Eye className="h-5 w-5 text-gray-500 hover:text-gray-700" />
+                                            )}
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
 
@@ -272,7 +296,29 @@ const PatientSignup = () => {
                                     <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 sm:text-sm">
                                         <Lock size={16} />
                                     </span>
-                                    <input type="password" name="confirmPassword" id="confirmPassword" required value={formData.confirmPassword} onChange={handleChange} className="flex-1 focus:ring-blue-500 focus:border-blue-500 block w-full min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300 py-2 border px-3" />
+                                    <div className="relative w-full flex-1 min-w-0 flex">
+                                        <input
+                                            type={showConfirmPassword ? "text" : "password"}
+                                            name="confirmPassword"
+                                            id="confirmPassword"
+                                            required
+                                            value={formData.confirmPassword}
+                                            onChange={handleChange}
+                                            className="focus:ring-blue-500 focus:border-blue-500 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300 py-2 border pl-3 pr-10"
+                                        />
+                                        <button
+                                            type="button"
+                                            onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                                            className="absolute inset-y-0 right-0 flex items-center pr-3"
+                                            aria-label="Toggle confirm password visibility"
+                                        >
+                                            {showConfirmPassword ? (
+                                                <EyeOff className="h-5 w-5 text-gray-500 hover:text-gray-700" />
+                                            ) : (
+                                                <Eye className="h-5 w-5 text-gray-500 hover:text-gray-700" />
+                                            )}
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>

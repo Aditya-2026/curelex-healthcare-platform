@@ -99,9 +99,9 @@ const Contact = () => {
                                         <Mail className="h-6 w-6 text-blue-600" />
                                     </div>
                                     <div className="ml-4">
-                                        <p className="text-lg font-medium text-gray-900">Email Address</p>
-                                        <a href="mailto:info.curelex@gmail.com" className="mt-1 text-blue-600 hover:text-blue-500 block">
-                                            info.curelex@gmail.com
+                                        <p className="text-lg font-medium text-gray-900">Official Email</p>
+                                        <a href="mailto:support@curelex.in" className="mt-1 text-blue-600 hover:text-blue-500 block">
+                                            support@curelex.in
                                         </a>
                                     </div>
                                 </div>

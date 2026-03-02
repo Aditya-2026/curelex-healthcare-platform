@@ -70,7 +70,7 @@ const Navbar = () => {
                             {isAdmin && isAuthenticated ? (
                                 <ShieldCheck size={28} className="text-white" />
                             ) : (
-                                <img src="/src/assets/logo.png" alt="Curelex Logo" className="h-10 w-auto" />
+                                <img src="/src/assets/logo.png" alt="Curelex Logo" className="h-8 w-auto" />
                             )}
                             <span className={`text-2xl font-bold tracking-tighter hidden sm:block ${isAdmin && isAuthenticated ? 'text-white' : 'text-blue-600'}`}>
                                 {isAdmin && isAuthenticated ? 'Curelex Admin' : 'Curelex'}

@@ -15,27 +15,44 @@ const About = () => {
         <div className="bg-gray-50 min-h-screen pt-16">
             {/* 1. Brief Company Introduction Section */}
             <section className="relative bg-white overflow-hidden">
-                <div className="max-w-7xl mx-auto">
-                    <div className="relative z-10 pb-8 bg-white sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
-                        <main className="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
-                            <motion.div
-                                initial="hidden"
-                                animate="visible"
-                                variants={fadeIn}
-                                transition={{ duration: 0.6 }}
-                                className="text-left"
-                            >
-                                <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
-                                    <span className="block xl:inline">About</span>{' '}
-                                    <span className="block text-blue-600 xl:inline">Curelex HealthTech</span>
-                                </h1>
-                                <p className="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
-                                    Bridging the gap between patients and super specialist doctors through our innovative hybrid e-clinics and advanced telemedicine platform.
-                                </p>
-                                <p className="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
-                                    At Curelex, we are building a digital medical ecosystem that leverages technology to provide accessible, efficient, and affordable healthcare. We connect patients in remote and urban areas directly with top-tier specialists, ensuring that quality care is never out of reach.
-                                </p>
-                            </motion.div>
+                <div className="max-w-7xl xl:max-w-[1400px] mx-auto px-6">
+                    <div className="relative z-10 pb-8 bg-white sm:pb-16 md:pb-20 lg:pb-28 xl:pb-32">
+                        <main className="mt-10 md:mt-12 mx-auto w-full">
+                            <div className="grid lg:grid-cols-12 gap-2 lg:gap-4 items-center px-4 sm:px-8 md:px-16 lg:px-24 xl:px-40">
+                                {/* Logo Section */}
+                                <motion.div
+                                    initial={{ opacity: 0, scale: 0.9 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    transition={{ duration: 0.6 }}
+                                    className="flex justify-center lg:justify-end lg:pr-4 order-1 lg:col-span-4"
+                                >
+                                    <img
+                                        src="/src/assets/logo.png"
+                                        alt="Curelex Logo"
+                                        className="w-40 md:w-56 lg:w-64 max-w-full h-auto"
+                                    />
+                                </motion.div>
+
+                                {/* About Content */}
+                                <motion.div
+                                    initial="hidden"
+                                    animate="visible"
+                                    variants={fadeIn}
+                                    transition={{ duration: 0.6 }}
+                                    className="text-left order-2 lg:col-span-8 max-w-none"
+                                >
+                                    <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl text-center md:text-left">
+                                        <span className="block">About</span>
+                                        <span className="block text-blue-600 mt-2">Curelex HealthTech</span>
+                                    </h1>
+                                    <p className="mt-3 text-gray-600 leading-relaxed text-lg text-center md:text-left">
+                                        Bridging the gap between patients and super specialist doctors through our innovative hybrid e-clinics and advanced telemedicine platform.
+                                    </p>
+                                    <p className="mt-3 text-gray-600 leading-relaxed text-lg text-center md:text-left">
+                                        At Curelex, we are building a digital medical ecosystem that leverages technology to provide accessible, efficient, and affordable healthcare. We connect patients in remote and urban areas directly with top-tier specialists, ensuring that quality care is never out of reach.
+                                    </p>
+                                </motion.div>
+                            </div>
                         </main>
                     </div>
                 </div>

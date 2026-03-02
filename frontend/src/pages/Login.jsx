@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Mail, Lock, User, Stethoscope, ArrowRight, Loader2 } from 'lucide-react';
+import { Mail, Lock, User, Stethoscope, ArrowRight, Loader2, Eye, EyeOff } from 'lucide-react';
 import api from '../services/api';
 
 import { useAuth } from '../context/AuthContext';
@@ -11,6 +11,7 @@ const Login = () => {
     const [role, setRole] = useState('patient'); // 'patient' or 'doctor'
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
     const [loading, setLoading] = useState(false);
 
     const handleLogin = async (e) => {
@@ -120,14 +121,26 @@ const Login = () => {
                                 <input
                                     id="password"
                                     name="password"
-                                    type="password"
+                                    type={showPassword ? "text" : "password"}
                                     autoComplete="current-password"
                                     required
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
-                                    className="focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 sm:text-sm border-gray-300 rounded-md py-2 border"
+                                    className="focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 pr-10 sm:text-sm border-gray-300 rounded-md py-2 border"
                                     placeholder="••••••••"
                                 />
+                                <button
+                                    type="button"
+                                    onClick={() => setShowPassword(!showPassword)}
+                                    className="absolute inset-y-0 right-0 flex items-center pr-3"
+                                    aria-label="Toggle password visibility"
+                                >
+                                    {showPassword ? (
+                                        <EyeOff className="h-5 w-5 text-gray-500 hover:text-gray-700" />
+                                    ) : (
+                                        <Eye className="h-5 w-5 text-gray-500 hover:text-gray-700" />
+                                    )}
+                                </button>
                             </div>
                         </div>
 

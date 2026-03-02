@@ -16,7 +16,7 @@ public class EmailService {
     @Value("${spring.mail.username}")
     private String senderEmail;
 
-    private final String COMPANY_EMAIL = "company_email";
+    private final String COMPANY_EMAIL = "info.curelex@gamil.com";
 
     public void sendPatientRegistrationEmail(String patientName, String patientEmail, String patientMobile,
             String aadhaar) {

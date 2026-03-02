@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Mail, Lock, Key, Loader2, CheckCircle } from 'lucide-react';
+import { Mail, Lock, Key, Loader2, CheckCircle, Eye, EyeOff } from 'lucide-react';
 import api from '../services/api';
 
 const ForgotPassword = () => {
@@ -11,6 +11,8 @@ const ForgotPassword = () => {
     const [otp, setOtp] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
     const handleSendOtp = async (e) => {
         e.preventDefault();
@@ -137,13 +139,25 @@ const ForgotPassword = () => {
                                     <input
                                         id="newPassword"
                                         name="newPassword"
-                                        type="password"
+                                        type={showPassword ? "text" : "password"}
                                         required
-                                        className="focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 sm:text-sm border-gray-300 rounded-md p-2 border"
+                                        className="focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 pr-10 sm:text-sm border-gray-300 rounded-md p-2 border"
                                         placeholder="Min. 8 characters"
                                         value={newPassword}
                                         onChange={(e) => setNewPassword(e.target.value)}
                                     />
+                                    <button
+                                        type="button"
+                                        onClick={() => setShowPassword(!showPassword)}
+                                        className="absolute inset-y-0 right-0 flex items-center pr-3"
+                                        aria-label="Toggle password visibility"
+                                    >
+                                        {showPassword ? (
+                                            <EyeOff className="h-5 w-5 text-gray-500 hover:text-gray-700" />
+                                        ) : (
+                                            <Eye className="h-5 w-5 text-gray-500 hover:text-gray-700" />
+                                        )}
+                                    </button>
                                 </div>
                             </div>
 
@@ -158,13 +172,25 @@ const ForgotPassword = () => {
                                     <input
                                         id="confirmPassword"
                                         name="confirmPassword"
-                                        type="password"
+                                        type={showConfirmPassword ? "text" : "password"}
                                         required
-                                        className="focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 sm:text-sm border-gray-300 rounded-md p-2 border"
+                                        className="focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 pr-10 sm:text-sm border-gray-300 rounded-md p-2 border"
                                         placeholder="Retype password"
                                         value={confirmPassword}
                                         onChange={(e) => setConfirmPassword(e.target.value)}
                                     />
+                                    <button
+                                        type="button"
+                                        onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                                        className="absolute inset-y-0 right-0 flex items-center pr-3"
+                                        aria-label="Toggle confirm password visibility"
+                                    >
+                                        {showConfirmPassword ? (
+                                            <EyeOff className="h-5 w-5 text-gray-500 hover:text-gray-700" />
+                                        ) : (
+                                            <Eye className="h-5 w-5 text-gray-500 hover:text-gray-700" />
+                                        )}
+                                    </button>
                                 </div>
                             </div>
 

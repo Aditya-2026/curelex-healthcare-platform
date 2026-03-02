@@ -18,6 +18,7 @@ import AdminDashboard from './pages/AdminDashboard';
 import RoleProtectedRoute from './components/RoleProtectedRoute';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
+import Watermark from './components/Watermark';
 
 import { AuthProvider, useAuth } from './context/AuthContext';
 
@@ -34,7 +35,8 @@ function AppContent() {
     return (
         <Router>
             <ScrollToTop />
-            <div className="bg-white min-h-screen flex flex-col">
+            <div className="bg-white min-h-screen flex flex-col relative">
+                <Watermark />
                 <Navbar />
                 <main className="flex-grow">
                     <Routes>
