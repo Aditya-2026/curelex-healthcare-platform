@@ -526,48 +526,50 @@ const AdminDashboard = () => {
 
             </div>
 
-            {/* ═══════════════════════════════════════════════════════ */}
-            {/* MODAL: Certificate Viewer                              */}
-            {/* ═══════════════════════════════════════════════════════ */}
             {certModal.open && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4" onClick={() => setCertModal({ open: false, url: '', doctorName: '' })}>
-                    <div className="bg-white rounded-2xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-hidden" onClick={e => e.stopPropagation()}>
-                        <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
-                            <div className="flex items-center gap-3">
-                                <div className="p-2 rounded-lg bg-blue-50"><FileText size={20} className="text-blue-600" /></div>
-                                <div>
-                                    <h3 className="font-bold text-gray-900">Doctor Certificate Preview</h3>
-                                    <p className="text-xs text-gray-500">Dr. {certModal.doctorName}</p>
-                                </div>
-                            </div>
+                <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+                    <div className="bg-white rounded-2xl w-[90%] max-w-5xl shadow-xl flex flex-col max-h-[90vh]">
+                        {/* Header */}
+                        <div className="flex justify-between items-center px-6 py-4 border-b">
+                            <h2 className="text-xl font-semibold">Doctor Certificate Preview - Dr. {certModal.doctorName}</h2>
                             <button onClick={() => setCertModal({ open: false, url: '', doctorName: '' })}
                                 className="p-2 rounded-lg hover:bg-gray-100 transition-colors text-gray-500">
                                 <X size={20} />
                             </button>
                         </div>
-                        <div className="p-6 flex items-center justify-center bg-gray-50 min-h-[400px]">
+
+                        {/* Body - Scrollable */}
+                        <div className="p-6 overflow-y-auto flex-1 bg-gray-50 flex items-center justify-center min-h-[400px]">
                             {certModal.url.toLowerCase().endsWith('.pdf') ? (
                                 <iframe
                                     src={`${FILE_BASE_URL}${certModal.url}`}
+                                    title="Doctor Certificate"
                                     className="w-full h-[70vh] rounded-lg border border-gray-200"
-                                    title="Certificate PDF"
+                                    frameBorder="0"
+                                    onError={e => { e.target.style.display = 'none'; e.target.parentNode.innerHTML = '<p class="text-gray-500 text-sm">Unable to load certificate. Please use "Open in New Tab".</p>'; }}
                                 />
                             ) : (
                                 <img
                                     src={`${FILE_BASE_URL}${certModal.url}`}
                                     alt="Doctor Certificate"
                                     className="max-w-full max-h-[70vh] rounded-lg shadow-md object-contain"
-                                    onError={e => { e.target.style.display = 'none'; e.target.parentNode.innerHTML = '<p class="text-gray-500 text-sm">Unable to load certificate</p>'; }}
+                                    onError={e => { e.target.style.display = 'none'; e.target.parentNode.innerHTML = '<p class="text-gray-500 text-sm">Unable to load certificate. Please use "Open in New Tab".</p>'; }}
                                 />
                             )}
                         </div>
-                        <div className="flex items-center justify-between px-6 py-4 border-t border-gray-100 bg-white">
-                            <a href={`${FILE_BASE_URL}${certModal.url}`} target="_blank" rel="noopener noreferrer"
-                                className="text-sm text-blue-600 hover:text-blue-800 font-medium">
-                                Open in New Tab ↗
+
+                        {/* Footer - Fixed */}
+                        <div className="flex justify-end gap-4 px-6 py-4 border-t bg-white">
+                            <a
+                                href={`${FILE_BASE_URL}${certModal.url}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-blue-600 font-medium self-center"
+                            >
+                                Open in New Tab
                             </a>
                             <button onClick={() => setCertModal({ open: false, url: '', doctorName: '' })}
-                                className="px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm font-medium text-gray-700 transition-colors">
+                                className="bg-gray-200 px-4 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-300 transition-colors">
                                 Close
                             </button>
                         </div>
